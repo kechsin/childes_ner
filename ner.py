@@ -241,7 +241,7 @@ def natasha_ner(transcripts):
 def process_transcripts(names, ner_function, testing=True):
     transcripts = []
     for name in names:
-        transcripts.append(read_file(name))
+        transcripts.append(read_file('_' + name))
     for i in range(len(transcripts)):
         transcripts[i]['text'] = re.sub(r'\s+', ' ', transcripts[i]['text']).strip()
     timestamps1 = ner_function(transcripts)
@@ -287,7 +287,7 @@ def main():
           'Варианты: roberta (не рекомендуется), spacy, natasha.')
     ner_option = input().lower()
     chosen_ner = False
-    names = list([f'_{i}_{transcript_option}' for i in numbers])
+    names = list([f'{i}_{transcript_option}' for i in numbers])
     while not chosen_ner:
         chosen_ner = True
         if ner_option == 'roberta':
