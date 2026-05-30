@@ -248,13 +248,13 @@ def process_transcripts(names, ner_function, testing=True):
     timestamps0 = [list_based(transcript) for transcript in transcripts]
 
     if testing:
-        funname = str(ner_function).split()[1] + '_'
+        funname = '_' + str(ner_function).split()[1]
     else:
         funname = ""
     for i in range(len(names)):
         all_timestamps = concat_lists(timestamps0[i], timestamps1[i])
         all_timestamps = delete_exceptions(all_timestamps)
-        with open(f'ner/{funname}{names[i]}.csv', 'w') as f:
+        with open(f'ner/{names[i]}{funname}.csv', 'w') as f:
             writer = csv.writer(f)
             writer.writerows(all_timestamps)
 
